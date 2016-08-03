@@ -20,17 +20,21 @@
   <%= @restaurant.category.capitalize %>
 </p>
 <br>
+<%= render :partial => "/reviews/form" %>
+<br>
 <p>
   <strong>Reviews</strong>
-  <% @restaurant.reviews.each do |review| %>
+  <% @restaurant.reviews.reject(&:new_record?).each do |r| %>
     <hr>
-    <% review.rating.times do %>
+    <% r.rating.times do %>
       <i class="fa fa-star"></i>
     <% end %>
-    <%= review.content %>
+    <%= r.content %>
     <hr>
   <% end %>
 </p>
+
+
 
 <%# link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%= link_to "New Review", new_restaurant_review_path(@restaurant) %> |
