@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  # admin update / delete any restaurant or review
+  # namespace :admin do
+  #   resources :restaurants do
+  #     resources :reviews, only: [:index, ]
+  #   end
+  # end
+
+  resources :restaurants, only: [:index, :new, :show, :create] do
+    resources :reviews, only: [:new, :create]
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
